@@ -42,7 +42,7 @@ fun main() {
         }
     }
 
-    fun part01(lines: List<String>) {
+    fun part01(lines: List<String>): Int {
         val lowerCode = alphabetLowercaseCodeList()
         val upperCode = alphabetUppercaseCodeList()
         var result = 0
@@ -54,10 +54,10 @@ fun main() {
                 firstCompartment.intersect(secondCompartment).toList()[0] // Because we only have 1 letter shared!
             result += if (sharedChar.isUpperCase()) upperCode[sharedChar]!! else lowerCode[sharedChar]!!
         }
-        println("Sum of priorities is-> $result")
+        return result
     }
 
-    fun part02(lines: List<String>) {
+    fun part02(lines: List<String>): Int {
         val lowerCode = alphabetLowercaseCodeList()
         val upperCode = alphabetUppercaseCodeList()
         val groups = mutableListOf<MutableList<String>>()
@@ -91,9 +91,15 @@ fun main() {
 
             result += if (sharedChar.isUpperCase()) upperCode[sharedChar]!! else lowerCode[sharedChar]!!
         }
-        println("Sum of priorities is-> $result")
+        return result
     }
 
-    part01(readInput(targetDirectory = "day03", name = "Day03RealData"))
-    part02(readInput(targetDirectory = "day03", name = "Day03RealData"))
+    check(part01(readInput(targetDirectory = "day03", name = "Day03FakeData")) == 157)
+    check(part02(readInput(targetDirectory = "day03", name = "Day03FakeData")) == 70)
+
+    val part01Answer = part01(readInput(targetDirectory = "day03", name = "Day03RealData"))
+    val part02Answer = part02(readInput(targetDirectory = "day03", name = "Day03RealData"))
+
+    println("Sum of priorities in part01 is-> $part01Answer")
+    println("Sum of priorities in part02 is-> $part02Answer")
 }

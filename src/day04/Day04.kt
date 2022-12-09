@@ -4,7 +4,7 @@ import readInput
 
 fun main() {
 
-    fun part01(lines: List<String>) {
+    fun part01(lines: List<String>): Int {
         var result = 0
         lines.forEach { line ->
             val ranges = line.split(",")
@@ -18,10 +18,10 @@ fun main() {
                 result++
             }
         }
-        println("Total number of ranges that are covered by another is-> $result")
+        return result
     }
 
-    fun part02(lines: List<String>) {
+    fun part02(lines: List<String>): Int {
         var result = 0
         lines.forEach { line ->
             val ranges = line.split(",")
@@ -35,9 +35,16 @@ fun main() {
                 result++
             }
         }
-        println("Total number of ranges that are overlapping by another is-> $result")
+        return result
     }
 
-    part01(readInput(targetDirectory = "day04", name = "Day04RealData"))
-    part02(readInput(targetDirectory = "day04", name = "Day04RealData"))
+    check(part01(readInput(targetDirectory = "day04", name = "Day04FakeData")) == 2)
+    check(part02(readInput(targetDirectory = "day04", name = "Day04FakeData")) == 4)
+
+    val part01Answer = part01(readInput(targetDirectory = "day04", name = "Day04RealData"))
+    val part02Answer = part02(readInput(targetDirectory = "day04", name = "Day04RealData"))
+
+    println("Total number of ranges that are covered by another is-> $part01Answer")
+    println("Total number of ranges that are overlapping by another is-> $part02Answer")
+
 }

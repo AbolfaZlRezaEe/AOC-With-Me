@@ -4,7 +4,7 @@ import readInput
 import java.util.*
 
 fun main() {
-    fun part01(lines: List<String>) {
+    fun part01(lines: List<String>): String {
         // Separate input and instructions
         val columns = hashMapOf<Int, LinkedList<Char>>()
         val instructions = lines.filter { line -> line.startsWith("move") }
@@ -49,10 +49,10 @@ fun main() {
         // Get the first char of every list for creating the final message
         var finalMessage = ""
         columns.forEach { finalMessage += it.value.first }
-        println("The result is-> $finalMessage")
+        return finalMessage
     }
 
-    fun part02(lines: List<String>) {
+    fun part02(lines: List<String>): String {
         // Separate input and instructions
         val columns = hashMapOf<Int, LinkedList<Char>>()
         val instructions = lines.filter { line -> line.startsWith("move") }
@@ -99,8 +99,15 @@ fun main() {
         // Get the first char of every list for creating the final message
         var finalMessage = ""
         columns.forEach { finalMessage += it.value.first }
-        println("The result is-> $finalMessage")
+        return finalMessage
     }
-    part01(readInput(targetDirectory = "day05", name = "Day05RealData"))
-    part02(readInput(targetDirectory = "day05", name = "Day05RealData"))
+
+    check(part01(readInput(targetDirectory = "day05", name = "Day05FakeData")) == "CMZ")
+    check(part02(readInput(targetDirectory = "day05", name = "Day05FakeData")) == "MCD")
+
+    val part01Answer = part01(readInput(targetDirectory = "day05", name = "Day05RealData"))
+    val part02Answer = part02(readInput(targetDirectory = "day05", name = "Day05RealData"))
+
+    println("The final message in part01 is-> $part01Answer")
+    println("The final message in part02 is-> $part02Answer")
 }

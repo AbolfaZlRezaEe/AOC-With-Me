@@ -2,24 +2,31 @@ package day06
 
 import readInput
 
-const val MAX_BUFFER_SIZE = 4 // You should just change this value for both parts!
+const val DAY01_MAX_BUFFER_SIZE = 4
+const val DAY02_MAX_BUFFER_SIZE = 14
 fun main() {
-    fun answer(lines: List<String>) {
+    fun answer(lines: List<String>, bufferSize: Int): Int {
         val stringBuffer = StringBuffer()
-        run {
-            lines[0].forEachIndexed { index, char ->
-                if (stringBuffer.length < MAX_BUFFER_SIZE) {
-                    stringBuffer.append(char)
+        lines[0].forEachIndexed { index, char ->
+            if (stringBuffer.length < bufferSize) {
+                stringBuffer.append(char)
+            }
+            if (stringBuffer.length == bufferSize) {
+                if (stringBuffer.toSet().size == bufferSize) {
+                    return index + 1
                 }
-                if (stringBuffer.length == MAX_BUFFER_SIZE) {
-                    if (stringBuffer.toSet().size == MAX_BUFFER_SIZE) {
-                        println("First marker can be found in ${index + 1} index")
-                        return@run
-                    }
-                    stringBuffer.deleteCharAt(0)
-                }
+                stringBuffer.deleteCharAt(0)
             }
         }
+        return -1
     }
-    answer(readInput(targetDirectory = "day06", name = "Day06RealData"))
+
+    check(answer(readInput(targetDirectory = "day06", name = "Day06FakeData"), DAY01_MAX_BUFFER_SIZE) == 7)
+    check(answer(readInput(targetDirectory = "day06", name = "Day06FakeData"), DAY02_MAX_BUFFER_SIZE) == 19)
+
+    val part01Answer = answer(readInput(targetDirectory = "day06", name = "Day06RealData"), DAY01_MAX_BUFFER_SIZE)
+    val part02Answer = answer(readInput(targetDirectory = "day06", name = "Day06RealData"), DAY02_MAX_BUFFER_SIZE)
+
+    println("First marker can be found for part01 in $part01Answer index")
+    println("First marker can be found for part02 in $part02Answer index")
 }

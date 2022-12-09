@@ -25,7 +25,7 @@ fun main() {
         return input
     }
 
-    fun part01(lines: List<String>) {
+    fun part01(lines: List<String>): Int {
         val input = provideInput(lines)
         var finalResult = 0
 
@@ -62,10 +62,10 @@ fun main() {
                 finalResult += round[2].toInt() + round[3].toInt()
             }
         }
-        println("Final score is-> $finalResult")
+        return finalResult
     }
 
-    fun part02(lines: List<String>) {
+    fun part02(lines: List<String>): Int {
         val input = provideInput(lines)
         var finalResult = 0
 
@@ -132,9 +132,15 @@ fun main() {
                 finalResult += round[2].toInt() + round[3].toInt()
             }
         }
-        println("Final score is-> $finalResult")
+        return finalResult
     }
 
-    part01(readInput(targetDirectory = "day02", name = "Day02RealData"))
-    part02(readInput(targetDirectory = "day02", name = "Day02RealData"))
+    check(part01(readInput(targetDirectory = "day02", name = "Day02FakeData")) == 15)
+    check(part02(readInput(targetDirectory = "day02", name = "Day02FakeData")) == 12)
+
+    val finalScorePart01 = part01(readInput(targetDirectory = "day02", name = "Day02RealData"))
+    val finalScorePart02 = part02(readInput(targetDirectory = "day02", name = "Day02RealData"))
+
+    println("Final score for part01 is-> $finalScorePart01")
+    println("Final score for part02 is-> $finalScorePart02")
 }
